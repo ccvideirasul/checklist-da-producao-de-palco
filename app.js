@@ -121,10 +121,6 @@ const elements = {
   formMessage: document.querySelector("#formMessage"),
   progressPercent: document.querySelector("#progressPercent"),
   completedCount: document.querySelector("#completedCount"),
-  currentTime: document.querySelector("#currentTime"),
-  databaseStatusDot: document.querySelector("#databaseStatusDot"),
-  databaseStatusTitle: document.querySelector("#databaseStatusTitle"),
-  databaseStatusText: document.querySelector("#databaseStatusText"),
 };
 
 let supabase = null;
@@ -183,28 +179,6 @@ function getTeamLabel(teamId) {
 
 function formatServiceDay(serviceDay) {
   return serviceDay === "quarta" ? "Quarta" : "Domingo";
-}
-
-function updateClock() {
-  const now = new Date();
-  elements.currentTime.dateTime = now.toISOString();
-  elements.currentTime.textContent = new Intl.DateTimeFormat("pt-BR", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(now);
-}
-
-function updateDatabaseStatus() {
-  if (!supabase) {
-    elements.databaseStatusTitle.textContent = "Modo teste";
-    elements.databaseStatusText.textContent = "Salvando no navegador";
-    elements.databaseStatusDot.classList.remove("connected");
-    return;
-  }
-
-  elements.databaseStatusTitle.textContent = "Supabase ativo";
-  elements.databaseStatusText.textContent = "Salvando no banco";
-  elements.databaseStatusDot.classList.add("connected");
 }
 
 function renderChecklist() {
@@ -414,9 +388,6 @@ function bindEvents() {
 
 await setupSupabase();
 populateTeams();
-updateClock();
-updateDatabaseStatus();
 renderChecklist();
 setScreen(currentScreen);
 bindEvents();
-setInterval(updateClock, 30_000);
