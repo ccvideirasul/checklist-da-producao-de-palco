@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checklist | Produção de Palco CCVideira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="#" aria-label="CCVideira">
+          <img src="assets/logo-ccvideira.png" alt="CCVideira" />
+        </a>
+        <div>
+          <p class="eyebrow">Produção de Palco</p>
+          <h1>Checklist de serviço</h1>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="status-strip" aria-label="Status do registro">
+          <div class="status-card">
+          <span class="status-dot" id="databaseStatusDot"></span>
+          <div>
+            <strong id="databaseStatusTitle">Modo teste</strong>
+            <span id="databaseStatusText">Salvando no navegador</span>
+          </div>
+          </div>
+          <time id="currentTime" datetime=""></time>
+        </section>
+
+        <nav class="stepper" aria-label="Etapas do checklist">
+          <span class="step-pill active" id="stepOnePill">1. Serviço</span>
+          <span class="step-line"></span>
+          <span class="step-pill" id="stepTwoPill">2. Checklist</span>
+        </nav>
+
+        <form class="checklist-form" id="serviceForm">
+          <section class="screen active" id="setupScreen" aria-labelledby="setupTitle">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Etapa 1</p>
+                <h2 id="setupTitle">Dados do serviço</h2>
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <label class="field">
+                <span>Voluntário</span>
+                <input
+                  id="volunteerName"
+                  name="volunteerName"
+                  type="text"
+                  placeholder="Seu nome"
+                  autocomplete="name"
+                  required
+                />
+              </label>
+
+              <fieldset class="field segmented-field full-row">
+                <legend>Dia</legend>
+                <div class="segmented-control" role="radiogroup" aria-label="Dia do serviço">
+                  <label>
+                    <input type="radio" name="serviceDay" value="quarta" required />
+                    <span>Quarta</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="serviceDay" value="domingo" />
+                    <span>Domingo</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <label class="field">
+                <span>Equipe</span>
+                <select id="teamSelect" name="team" required>
+                  <option value="">Selecione a equipe</option>
+                </select>
+              </label>
+
+              <fieldset class="field segmented-field full-row">
+                <legend>Função</legend>
+                <div class="segmented-control" role="radiogroup" aria-label="Função">
+                  <label>
+                    <input type="radio" name="role" value="P1" required />
+                    <span>P1</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="role" value="P3" />
+                    <span>P3</span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+
+            <button class="primary-button next-button" id="nextButton" type="button">
+              Continuar
+            </button>
+          </section>
+
+          <section class="screen" id="checklistScreen" aria-labelledby="checklistTitle" hidden>
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Etapa 2</p>
+                <h2 id="checklistTitle">Checklist</h2>
+                <p class="screen-summary" id="checklistSummary">Serviço selecionado</p>
+              </div>
+              <button class="ghost-button compact-button" id="backButton" type="button">
+                Voltar
+              </button>
+            </div>
+
+            <div class="metric-grid" aria-label="Indicadores do preenchimento">
+              <div class="metric">
+                <span class="metric-value" id="progressPercent">0%</span>
+                <span class="metric-label">Concluído</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" id="completedCount">0/0</span>
+                <span class="metric-label">Itens</span>
+              </div>
+            </div>
+
+            <div class="checklist-toolbar">
+              <strong>Marque cada item ao concluir.</strong>
+              <button class="ghost-button compact-button" id="clearButton" type="button">
+                Limpar
+              </button>
+            </div>
+
+            <div class="checklist-list" id="checklistList" hidden></div>
+
+            <section class="submit-bar" aria-label="Envio do checklist">
+              <div>
+                <strong id="submitSummary">Aguardando seleção</strong>
+                <span id="submitHint">O envio registra data e hora automaticamente.</span>
+              </div>
+              <button class="primary-button" id="submitButton" type="submit" disabled>
+                Enviar checklist
+              </button>
+            </section>
+          </section>
+
+          <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
