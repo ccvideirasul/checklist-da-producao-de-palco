@@ -1,5 +1,5 @@
-const SUPABASE_URL = "";
-const SUPABASE_ANON_KEY = "";
+const SUPABASE_URL = "https://ieyvcqnjrlomshhuigxa.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_coWBaPhEEM_691BQUe0puw_5uM8elCB";
 const TABLE_NAME = "stage_production_checklists";
 
 const TEAMS_BY_DAY = {
